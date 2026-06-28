@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta property="og:title" content="Zeon">
+  <meta property="og:description" content="Exclu$ive">
+  <meta property="og:image" content="https://file.garden/aiHY1T3Ry0Odnk8G/antx.png">
+  <meta property="og:url" content="https://offcialx.xyz/zeon">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#000000">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Bading si zeon">
+  <meta name="twitter:description" content="Exclu$ive">
+  <meta name="twitter:image" content="https://file.garden/aiHY1T3Ry0Odnk8G/antx.png">
+  <link rel="icon" type="image/gif" href="https://file.garden/aiHY1T3Ry0Odnk8G/antx.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+  <link rel="icon" href="https://file.garden/aT6vZ4PVCwXB1BNw/994f2c6ff2fc77fa65350b0ed08bbecd-removebg-preview.png" type="image/png">
+  <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool'></script>
+  <title>@Zeon</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body, a, button, input, [role="button"] {
+      cursor: auto !important;
+    }
+    html, body {
+      height: 100%; margin: 0; padding: 0; overflow-x: hidden;
+      background: url('https://i.pinimg.com/originals/41/a0/68/41a068d3b4eba8686b77361905861cf4.gif') no-repeat center center / cover;
+      background-attachment: fixed;
+      color: #fff; font-family: 'Space Mono', monospace;
+    }
+    .trail-dot {
+      position: fixed; pointer-events: none; z-index: 99998;
+      border-radius: 50%; transform: translate(-50%, -50%);
+      opacity: 1; transition: opacity 0.5s ease;
+      filter: blur(0.4px);
+    }
+    #intro-panel {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(12px); font-size: 11px; color: #fff;
+      transition: opacity 0.6s ease; z-index: 900;
+      letter-spacing: 6px;
+      cursor: default;
+    }
+    .content {
+      display: none; flex-direction: column; align-items: center;
+      justify-content: center; min-height: 100vh;
+      padding: 30px 16px; text-align: center;
+    }
+    .top-logo {
+      width: 220px;
+      height: auto;
+      margin: 0 auto 14px;
+      transition: transform 0.3s;
+      filter: drop-shadow(0 0 16px rgba(255,255,255,0.15));
+      cursor: pointer;
+    }
+    .top-logo:hover { transform: scale(1.08); }
+    .main-title { font-size: 24px; margin: 0 0 18px; color: #fff; letter-spacing: 3px; }
+    .typing-caret { border-right: 2px solid #fff; animation: blink-caret 800ms step-end infinite; }
+    @keyframes blink-caret { from,to{border-color:transparent} 50%{border-color:#fff} }
+    .profile-section {
+      position: relative;
+      display: inline-flex; flex-direction: column; align-items: center;
+      margin: 0 auto 4px;
+    }
+    .avatar-wrap {
+      position: relative;
+      width: 180px; height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    .profile-pic-main {
+      width: 148px; height: 148px;
+      border-radius: 50%; object-fit: cover;
+      border: 3px solid #0a0a0a;
+      position: relative; z-index: 2; display: block;
+      box-shadow: 0 0 28px rgba(0,0,0,0.8);
+      transition: transform 0.3s;
+    }
+    .avatar-wrap:hover .profile-pic-main { transform: scale(1.04); }
+    .deco-img {
+      position: absolute;
+      width: 180px; height: 180px;
+      top: 0; left: 0;
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 3;
+      display: none;
+    }
+    .status-dot {
+      position: absolute;
+      bottom: 10px; right: 10px;
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 3px solid #0a0a0a; z-index: 5;
+    }
+    .s-online  { background: #43b581; }
+    .s-idle    { background: #faa61a; }
+    .s-dnd     { background: #f04747; }
+    .s-offline { background: #747f8d; }
+    .popup-card {
+      position: absolute;
+      bottom: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px) scale(0.95);
+      width: 268px;
+      background: #000000;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; overflow: visible;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 50;
+    }
+    .avatar-wrap:hover .popup-card {
+      opacity: 1; pointer-events: auto;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    .popup-inner { border-radius: 10px; overflow: hidden; }
+    .popup-banner-wrap {
+      width: 100%; height: 88px;
+      background: #000000;
+      overflow: hidden; position: relative; flex-shrink: 0;
+    }
+    .popup-banner {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+    }
+    .popup-body { padding: 0 12px 12px; }
+    .popup-avatar-row {
+      display: flex; align-items: flex-end; gap: 8px;
+      margin-top: -22px; margin-bottom: 8px;
+    }
+    .popup-avatar-wrap {
+      position: relative;
+      width: 52px; height: 52px;
+      flex-shrink: 0;
+    }
+    .popup-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 3px solid #000000;
+      object-fit: cover; display: block;
+    }
+    .popup-deco {
+      position: absolute;
+      width: 68px; height: 68px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: contain;
+      pointer-events: none;
+      z-index: 3;
+      display: none;
+    }
+    .popup-status-row {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(255,255,255,0.06); border-radius: 4px;
+      padding: 3px 7px; margin-bottom: 2px;
+      font-size: 9px; letter-spacing: 1px;
+    }
+    .popup-sdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink:0; }
+    .popup-name   { font-size: 14px; font-weight: 700; color: #fff; margin: 0 0 2px; }
+    .popup-handle { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 1px; margin: 0 0 8px; }
+    .popup-divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 6px 0; }
+    .popup-cstatus { font-size: 10px; color: rgba(255,255,255,0.5); font-style: italic; min-height: 14px; }
+    .sub-text {
+      font-size: 14px; color: rgba(255,255,255,0.7);
+      letter-spacing: 2px; margin: 14px 0 4px; line-height: 1.9;
+      font-family: 'Courier New', monospace; font-weight: 500;
+      min-height: 20px;
+    }
+    .blinking-notes {
+      font-size: 10px; color: rgba(255,255,255,0.7);
+      animation: sBlink 2.5s infinite alternate;
+      margin: 4px auto; letter-spacing: 1px; min-height: 14px;
+    }
+    @keyframes sBlink { 0%{opacity:.5} 100%{opacity:1} }
+    .spotify-widget {
+      width: 260px; max-width: 95%; height: 70px;
+      background: rgba(0,0,0,0.7); border-radius: 12px; padding: 0 14px;
+      margin: 14px auto; display: none;
+      flex-direction: row; align-items: center;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .sp-album { width: 46px; height: 46px; border-radius: 6px; overflow: hidden; flex-shrink:0; margin-right:12px; }
+    .sp-album img { width:100%; height:100%; object-fit:cover; }
+    .sp-info { flex:1; text-align:left; overflow:hidden; }
+    .sp-title  { font-size:11px; font-weight:bold; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .sp-artist { font-size:9px; color:#aaa; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .OfficialX { display:flex; justify-content:center; gap:16px; margin:14px auto 18px; }
+    .social-icon {
+      width:52px; height:52px; border-radius:50%;
+      background:#000000;
+      display:flex; align-items:center; justify-content:center;
+      transition:all 0.25s; text-decoration:none;
+      border:1px solid rgba(255,255,255,0.15);
+      cursor: pointer;
+    }
+    .social-icon svg { width:26px; height:26px; fill:#ffffff; }
+    .social-icon:hover { transform:scale(1.2); background:rgba(255,255,255,0.1); box-shadow:0 0 14px rgba(255,255,255,0.2); }
+    .custom-media {
+      width: 280px;
+      max-width: 92%;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin: 10px auto 0;
+      color: #ffffff;
+      font-size: 11px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.5px;
+    }
+    .custom-media:hover {
+      background: rgba(0, 0, 0, 0.7);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    }
+    .custom-media .media-artist {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 4px 0;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .custom-media .media-title {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0;
+      letter-spacing: 1px;
+      font-weight: 400;
+    }
+    .custom-media .media-divider {
+      width: 40px;
+      height: 1.5px;
+      background: rgba(255, 255, 255, 0.15);
+      margin: 8px auto 10px auto;
+      border-radius: 4px;
+    }
+    .custom-media .media-label {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: rgba(255, 255, 255, 0.25);
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div id="intro-panel" style="opacity: 0; display: none;"><span style="opacity:.8;letter-spacing:6px;">click</span></div>
+  <div class="content" style="display: flex;">
+    <img class="top-logo" src="https://file.garden/aiHY1T3Ry0Odnk8G/antx.png" alt="Logo">
+    <h1 class="main-title" id="main-title">@ Zeon</h1>
+    <div class="profile-section">
+      <div class="avatar-wrap" id="avatar-wrap">
+        <img class="profile-pic-main" id="profile-pic" src="https://i.pinimg.com/736x/9e/8a/29/9e8a29b4971987eeddcab95890daa07c.jpg" alt="zeon">
+        <img class="deco-img" id="deco-img" src="https://cdn.discordapp.com/avatar-decoration-presets/a_4539f720c2c576feca9de41b8dc413e8.png?size=160&amp;passthrough=true" alt="" onload="this.style.display='block'" onerror="this.style.display='none'" style="display: block;">
+        <div class="statu s-dnd" id="status-dot"></div>
+        <div class="popup-card" id="popup-card">
+          <div class="popup-inner">
+            <div class="popup-banner-wrap">
+              <img class="popup-banner" id="popup-banner" src="" alt="" style="display:none;" onload="this.style.display='block'" onerror="this.style.display='none'">
+            </div>
+            <div class="popup-body">
+              <div class="popup-avatar-row">
+                <div class="popup-avatar-wrap">
+                  <img class="popup-avatar" id="popup-avatar" src="https://i.pinimg.com/736x/9e/8a/29/9e8a29b4971987eeddcab95890daa07c.jpg" alt="">
+                  <img class="popup-deco" id="popup-deco" src="https://cdn.discordapp.com/avatar-decoration-presets/a_4539f720c2c576feca9de41b8dc413e8.png?size=160&amp;passthrough=true" alt="" onload="this.style.display='block'" onerror="this.style.display='none'" style="display: block;">
+                </div>
+                <div>
+                  <div class="popup-status-row">
+                    <div class="popup-sdot s-dnd" id="popup-sdot"></div>
+                    <span id="popup-slabel">dnd</span>
+                  </div>
+                </div>
+              </div>
+              <div class="popup-name" id="popup-name">zeon</div>
+              <div class="popup-handle" id="popup-handle">@cybersalsal</div>
+              <hr class="popup-divider">
+              <div class="popup-cstatus" id="popup-cstatus"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="sub-text">i do whatever i want.</p>
+    <div class="blinking-notes" id="blinking-notes"></div>
+    <div class="spotify-widget" id="spotify-widget">
+      <div class="sp-album"><img src="" alt="" id="sp-art"></div>
+      <div class="sp-info">
+        <div class="sp-title" id="sp-title">�</div>
+        <div class="sp-artist" id="sp-artist"></div>
+      </div>
+    </div>
+    <div class="OfficialX">
+      <a href="https://discord.gg/ytwC9q9BTy" target="_blank" class="social-icon" title="Discord">
+        <svg viewBox="0 0 24 24">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.01.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.01.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+      </a>
+    </div>
+    <div class="custom-media">
+      <div class="media-artist">Dreycruz</div>
+      <div class="media-divider"></div>
+      <div class="media-title">Luhod (Official Music Video)</div>
+      <div class="media-label">now playing</div>
+    </div>
+  </div>
+  <audio id="intro-audio" src="https://file.garden/ahWH9s9bFw9RXcfx/luhod_XkLiO3y7.mp3" loop></audio>
+  <script>
+    const trailColors = ['#ffffff','#000000','#ffffff','#000000','#ffffff'];
+    document.addEventListener('mousemove', e => {
+      const d = document.createElement('div');
+      d.classList.add('trail-dot');
+      const sz = 3 + Math.random() * 5;
+      const color = trailColors[Math.floor(Math.random() * trailColors.length)];
+      d.style.cssText = `width:${sz}px;height:${sz}px;background:${color};left:${e.clientX}px;top:${e.clientY}px;`;
+      document.body.appendChild(d);
+      setTimeout(() => d.style.opacity = '0', 20);
+      setTimeout(() => d.remove(), 520);
+    });
+    const introPanel = document.getElementById('intro-panel');
+    const content    = document.querySelector('.content');
+    const audio      = document.getElementById('intro-audio');
+    function typeWriter(el, text) {
+      el.textContent = ''; el.classList.add('typing-caret'); let i = 0;
+      const tick = () => {
+        if (i < text.length) { el.textContent += text[i++]; setTimeout(tick, 80); }
+        else el.classList.remove('typing-caret');
+      };
+      setTimeout(tick, 500);
+    }
+    function typeWriterLoop(el, text, speed = 80, pauseTime = 1500) {
+      el.textContent = '';
+      let i = 0;
+      el.classList.add('typing-caret');
+      const type = () => {
+        if (i < text.length) {
+          el.textContent += text[i++];
+          setTimeout(type, speed);
+        } else {
+          setTimeout(erase, pauseTime);
+        }
+      };
+      const erase = () => {
+        i--;
+        if (i >= 0) {
+          el.textContent = text.substring(0, i);
+          setTimeout(erase, speed * 0.5);
+        } else {
+          setTimeout(type, 500);
+        }
+      };
+      type();
+    }
+    function playAudio() {
+      audio.volume = 0;
+      audio.play().catch(() => {});
+      let iv = setInterval(() => {
+        audio.volume < 0.6 ? audio.volume = Math.min(0.6, audio.volume + 0.02) : clearInterval(iv);
+      }, 80);
+    }
+    introPanel.addEventListener('click', () => {
+      playAudio();
+      introPanel.style.opacity = '0';
+      setTimeout(() => {
+        introPanel.style.display = 'none';
+        content.style.display = 'flex';
+        typeWriter(document.getElementById('main-title'), '@ zeon');
+        typeWriterLoop(document.querySelector('.sub-text'), 'nothing happen');
+      }, 700);
+    });
+    document.addEventListener('click', () => {
+      if (audio.paused && introPanel.style.display === 'none') {
+        playAudio();
+      }
+    });
+    const UID = '1147538530281734167';
+    const SC  = { online:'s-online', idle:'s-idle', dnd:'s-dnd', offline:'s-offline' };
+    function applyStatus(ids, cls) {
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.className = el.className.replace(/s-\w+/g, '').trim() + ' ' + cls;
+      });
+    }
+    async function loadProfile() {
+      try {
+        const res  = await fetch(`https://api.lanyard.rest/v1/users/${UID}`);
+        const json = await res.json();
+        if (!json.success) return;
+        const data   = json.data;
+        const user   = data.discord_user;
+        const status = data.discord_status || 'offline';
+        const sc     = SC[status] || 's-offline';
+        const aExt   = user.avatar?.startsWith('a_') ? '.gif' : '.png';
+        const avatar = user.avatar
+          ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}${aExt}?size=512`
+          : `https://cdn.discordapp.com/embed/avatars/${parseInt(user.discriminator || '0') % 5}.png`;
+        const bHash  = user.banner;
+        const banner = bHash
+          ? `https://cdn.discordapp.com/banners/${user.id}/${bHash}${bHash.startsWith('a_') ? '.gif' : '.png'}?size=600`
+          : null;
+        const decoAsset = user.avatar_decoration_data?.asset;
+        const decoUrl   = decoAsset
+          ? `https://cdn.discordapp.com/avatar-decoration-presets/${decoAsset}.png?size=160&passthrough=true`
+          : null;
+        let cStatus = '';
+        (data.activities || []).forEach(act => {
+          if (act.type === 4 && act.state) cStatus = act.state;
+          if (act.type === 2) {
+            const art = act.assets?.large_image
+              ? `https://i.scdn.co/image/${act.assets.large_image.split(':')[1]}`
+              : '';
+            document.getElementById('sp-art').src            = art;
+            document.getElementById('sp-title').textContent  = act.details || '�';
+            document.getElementById('sp-artist').textContent = act.state   || '';
+            document.getElementById('spotify-widget').style.display = 'flex';
+          }
+        });
+        document.getElementById('profile-pic').src = avatar;
+        const decoEl      = document.getElementById('deco-img');
+        const popupDecoEl = document.getElementById('popup-deco');
+        if (decoUrl) {
+          decoEl.src      = decoUrl;        popupDecoEl.src = decoUrl;      
+        } else {
+          decoEl.style.display      = 'none';
+          popupDecoEl.style.display = 'none';
+        }
+        applyStatus(['status-dot'], sc);
+        applyStatus(['popup-sdot'], sc);
+        document.getElementById('popup-slabel').textContent = status;
+        const bannerEl = document.getElementById('popup-banner');
+        if (banner) {
+          bannerEl.src = banner;
+        } else {
+          bannerEl.style.display = 'none';
+        }
+        document.getElementById('popup-avatar').src = avatar;
+        document.getElementById('popup-name').textContent   = user.global_name || user.username;
+        document.getElementById('popup-handle').textContent = '@' + user.username;
+        if (cStatus) {
+          document.getElementById('blinking-notes').textContent = cStatus;
+          document.getElementById('popup-cstatus').textContent  = cStatus;
+        }
+      } catch (e) { console.error('Lanyard error:', e); }
+    }
+    loadProfile();
+    setInterval(loadProfile, 30000);
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) ||
+        (e.ctrlKey && e.key === 'U')
+      ) e.preventDefault();
+    });
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCGPKvVPL8IgBTjJ8BV8LLs5RjHg97--WI",
+      authDomain: "siteviews-6ac5c.firebaseapp.com",
+      projectId: "siteviews-6ac5c",
+      storageBucket: "siteviews-6ac5c.firebasestorage.app",
+      messagingSenderId: "963960122654",
+      appId: "1:963000122654:web:f66c892cddac2a7adead0f",
+      measurementId: "G-7MCK42ZD0G"
+    };
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db   = firebase.firestore();
+    const cDoc = db.collection('counters').doc('visitorCount');
+    (async () => {
+      try {
+        const n = await db.runTransaction(async t => {
+          const d = await t.get(cDoc);
+          const c = d.exists ? (d.data().count || 0) + 1 : 1;
+          t.set(cDoc, { count: c }, { merge: true });
+          return c;
+        });
+        document.getElementById('view-count').innerText = n;
+      } catch (e) {
+        document.getElementById('view-count').innerText = 'Error';
+      }
+    })();
+  </script>
+</body>
+</html>

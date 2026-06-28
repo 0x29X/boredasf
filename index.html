@@ -450,6 +450,21 @@
       z-index: 0;
     }
 
+    .avatar-wrapper-node.special-click {
+      cursor: pointer;
+    }
+    .avatar-wrapper-node.special-click .avatar-link {
+      cursor: pointer;
+    }
+    .avatar-wrapper-node.special-click .circle-avatar-container img.avatar-img {
+      border-color: rgba(255, 215, 0, 0.3);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .avatar-wrapper-node.special-click:hover .circle-avatar-container img.avatar-img {
+      border-color: rgba(255, 215, 0, 0.7);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+    }
+
     @media (max-width: 768px) {
       body { padding: 15px 10px 70px 10px; }
       .main-clan-logo img { height: 120px; }
@@ -594,6 +609,13 @@
     
     const Nakshits = ["708717096779120651", "750140736355303436", "494789328724033536", "857942370627354665", "1015473740391399474", "1377941322727424120", "1035424904092332033", "1256325364557545522", "696599738534985738","1191933300542021643"];
 
+    const XEN = "1512837414924583020";
+    const XEN_URL = "https://offcialx.xyz/angelica/";
+    const MESHA = "1514639241647362059";
+    const MESHA_URL = "https://offcialx.xyz/ashley/";
+    const ZEON = "1147538530281734167";
+    const ZEON_URL = "https://offcialx.xyz/zeon/";
+
     async function getUserData(userId) {
       try {
         const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`, { cache: 'no-cache' });
@@ -650,6 +672,11 @@
         const wrapper = document.createElement('div');
         wrapper.className = 'avatar-wrapper-node';
 
+        const isSpecial = (mem.id === XEN || mem.id === MESHA || mem.id === ZEON);
+        if (isSpecial) {
+          wrapper.classList.add('special-click');
+        }
+
         const decoHTML = mem.effectURL ? `<img src="${mem.effectURL}" class="avatar-decoration" alt="decoration" loading="lazy" onerror="this.remove()">` : '';
 
         let statusClass = 'status-offline';
@@ -667,7 +694,10 @@
         } else if (Array.isArray(mem.activities) && mem.activities.length > 0) {
           const act = mem.activities.find(a => a.type !== 4) || mem.activities[0];
           if (act) {
-            if (act.type === 0) { statusType = 'activity-playing'; statusText = `[Playing] ${act.name || 'Game'}`; } else if (act.type === 1) { statusType = 'activity-streaming'; statusText = `[Streaming] ${act.name || 'Stream'}`; } else if (act.type === 2) { statusType = 'activity-listening'; statusText = `[Listening] ${act.name || 'Music'}`; } else if (act.type === 3) { statusType = 'activity-watching'; statusText = `[Watching] ${act.name || 'Video'}`; }
+            if (act.type === 0) { statusType = 'activity-playing'; statusText = `[Playing] ${act.name || 'Game'}`; } 
+            else if (act.type === 1) { statusType = 'activity-streaming'; statusText = `[Streaming] ${act.name || 'Stream'}`; } 
+            else if (act.type === 2) { statusType = 'activity-listening'; statusText = `[Listening] ${act.name || 'Music'}`; } 
+            else if (act.type === 3) { statusType = 'activity-watching'; statusText = `[Watching] ${act.name || 'Video'}`; }
           }
         }
         if (mem.customStatus?.state) {
@@ -678,28 +708,46 @@
         const tooltipDeco = mem.effectURL ? `<img src="${mem.effectURL}" class="tooltip-avatar-decoration" alt="decoration">` : '';
 
         wrapper.innerHTML = `
-              <div class="avatar-link">
-                <div class="circle-avatar-container">
-                  ${decoHTML}
-                  <img src="${mem.avatarURL}" class="avatar-img" alt="avatar" loading="lazy">
-                  <span class="status-indicator ${statusClass}"></span>
-                </div>
-                <div class="name-label">${mem.displayName}</div>
+          <div class="avatar-link">
+            <div class="circle-avatar-container">
+              ${decoHTML}
+              <img src="${mem.avatarURL}" class="avatar-img" alt="avatar" loading="lazy">
+              <span class="status-indicator ${statusClass}"></span>
+            </div>
+            <div class="name-label">${mem.displayName}</div>
+          </div>
+          <div class="avatar-tooltip">
+            <div class="tooltip-header">
+              <div class="tooltip-avatar-wrapper">
+                ${tooltipDeco}
+                <img src="${mem.avatarURL}" class="tooltip-avatar-sm" alt="avatar" loading="lazy">
               </div>
-              <div class="avatar-tooltip">
-                <div class="tooltip-header">
-                  <div class="tooltip-avatar-wrapper">
-                    ${tooltipDeco}
-                    <img src="${mem.avatarURL}" class="tooltip-avatar-sm" alt="avatar" loading="lazy">
-                  </div>
-                  <div class="tooltip-user-info">
-                    <h4>${mem.displayName}</h4>
-                    <p>@${mem.username}</p>
-                  </div>
-                </div>
-                ${statusText ? `<div class="tooltip-activity-wrapper ${statusType}">${statusText}</div>` : ''}
+              <div class="tooltip-user-info">
+                <h4>${mem.displayName}</h4>
+                <p>@${mem.username}</p>
               </div>
-            `;
+            </div>
+            ${statusText ? `<div class="tooltip-activity-wrapper ${statusType}">${statusText}</div>` : ''}
+          </div>
+        `;
+
+        if (isSpecial) {
+          let url = XEN_URL;
+          if (mem.id === MESHA) {
+            url = MESHA_URL;
+          } else if (mem.id === ZEON) {
+            url = ZEON_URL;
+          }
+          wrapper.addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.open(url, '_blank');
+          });
+          const link = wrapper.querySelector('.avatar-link');
+          if (link) {
+            link.style.cursor = 'pointer';
+          }
+        }
+
         box.appendChild(wrapper);
       });
     }
